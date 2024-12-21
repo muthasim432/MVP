@@ -1,0 +1,29 @@
+Git CONTROL COMMANDS
+
+	1. CREATE A GIT IN THE LOCAL MACHINE 
+		COMMAND - git init
+	2. Adding the file in staging area
+		COMMAND - git status - check which file are in staging area ( red ones)
+			- git add adds the file in a staging area.
+			- git add . ( adds all the file inside the current directory)
+	3. Commit the file
+		command - git commit -m" Commit message"
+			- git log ( To see the committed files)
+
+
+
+
+React Native app:
+
+Installing react native EXPO 
+	
+1. Download the app expo go in your phone
+
+	Initialising the app - Go to the desired folder you wanna create the app in 
+	run the command - 
+		npm install -g expo-cli ( installs expo cli in the machine)
+		expo init nameofyourapp ( Create the app choose the blank option)
+		npm start ( Run the app)
+		scan the QR with your phone to see UI
+
+	
