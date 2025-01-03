@@ -1,60 +1,66 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import React, { useState } from "react";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
+import sharedStyles from "./sharedStyles";
 
-const SignUpPage = () => {
-  const navigation = useNavigation();
+const SignupPage = ({ navigation }) => {
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [otp, setOtp] = useState("");
+  const [verificationSent, setVerificationSent] = useState(false);
+
+  const handleSendOtp = () => {
+    setVerificationSent(true);
+    alert("OTP sent to your phone!");
+  };
+
+  const handleVerifyOtp = () => {
+    alert("Phone number verified!");
+    navigation.navigate("ConfirmSignupPage");
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Get Started with Your Account</Text>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("BusinessDetails")}
-      >
-        <Text style={styles.buttonText}>Start with Business Details</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.link}
-        onPress={() => navigation.navigate("LogIn")}
-      >
-        <Text style={styles.linkText}>Already have an account? Log In</Text>
-      </TouchableOpacity>
+      <ScrollView contentContainerStyle={styles.contentContainer}>
+        <Text style={styles.title}>Create an Account</Text>
+
+        <TextInput
+          placeholder="Enter Phone Number"
+          placeholderTextColor="#AAA"
+          value={phoneNumber}
+          onChangeText={setPhoneNumber}
+          keyboardType="phone-pad"
+          style={styles.input}
+        />
+        {verificationSent && (
+          <TextInput
+            placeholder="Enter OTP"
+            placeholderTextColor="#AAA"
+            value={otp}
+            onChangeText={setOtp}
+            keyboardType="number-pad"
+            style={styles.input}
+          />
+        )}
+
+        {!verificationSent ? (
+          <TouchableOpacity style={styles.button} onPress={handleSendOtp}>
+            <Text style={styles.buttonText}>Send OTP</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={styles.button} onPress={handleVerifyOtp}>
+            <Text style={styles.buttonText}>Verify OTP</Text>
+          </TouchableOpacity>
+        )}
+
+        <TouchableOpacity onPress={() => navigation.navigate("LoginPage")}>
+          <Text style={styles.linkText}>Already have an account? Login</Text>
+        </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#0A0F2E",
-  },
-  title: {
-    fontSize: 24,
-    color: "#FFF",
-    marginBottom: 20,
-  },
-  button: {
-    width: "80%",
-    padding: 15,
-    backgroundColor: "#4CAF50",
-    borderRadius: 5,
-    alignItems: "center",
-    marginTop: 20,
-  },
-  buttonText: {
-    color: "#FFF",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  link: {
-    marginTop: 20,
-  },
-  linkText: {
-    color: "#4CAF50",
-  },
+  ...sharedStyles,
 });
 
-export default SignUpPage;
+export default SignupPage;

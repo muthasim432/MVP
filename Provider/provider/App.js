@@ -6,11 +6,9 @@ import CalendarPage from "./Screens/CalendarPage";
 import JobPage from "./Screens/JobPage";
 import DisputePage from "./Screens/DisputePage";
 import AccountsPage from "./Screens/AccountsPage";
-import LogInPage from "./Authentication/LogInPage";
-import SignUpPage from "./Authentication/SignUpPage";
-import BusinessDetails from "./Authentication/BusinessDetails";
-import PersonalDetails from "./Authentication/PersonalDetails";
-import SignUpConfirmation from "./Authentication/SignUpConfirmation";
+import SignupPage from "./Authentication/SignUpPage";
+import LoginPage from "./Authentication/LoginPage";
+import ConfirmSignupPage from "./Authentication/ConfirmSignUpPage"
 
 const Stack = createStackNavigator();
 
@@ -18,24 +16,21 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="LogIn" // Start with the LogIn page
+        initialRouteName="LoginPage" // Start with the LogIn page
         screenOptions={{
           headerShown: false, // Disable the default header for all screens
         }}
       >
-        {/* Authentication Screens */}
-        <Stack.Screen name="LogIn" component={LogInPage} />
-        <Stack.Screen name="SignUp" component={SignUpPage} />
-        <Stack.Screen name="BusinessDetails" component={BusinessDetails} />
-        <Stack.Screen name="PersonalDetails" component={PersonalDetails} />
-        <Stack.Screen name="SignUpConfirmation" component={SignUpConfirmation} />
-
+  
         {/* Main App Screens */}
         <Stack.Screen name="Home" component={HomePage} />
         <Stack.Screen name="Calendar" component={CalendarPage} />
         <Stack.Screen name="Jobs" component={JobPage} />
         <Stack.Screen name="Disputes" component={DisputePage} />
         <Stack.Screen name="Accounts" component={AccountsPage} />
+        <Stack.Screen name="SignupPage" component={SignupPage} />
+        <Stack.Screen name="LoginPage" component={LoginPage} />
+        <Stack.Screen name="ConfirmSignupPage" component={ConfirmSignupPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
